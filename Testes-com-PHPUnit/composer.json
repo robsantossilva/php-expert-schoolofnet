@@ -1,0 +1,18 @@
+{
+    "name": "robsanossilva/phpunit",
+    "authors": [
+        {
+            "name": "Robson",
+            "email": "robsantossilva@gmail.com"
+        }
+    ],
+    "require": {},
+    "require-dev": {
+        "phpunit/phpunit": "^6.4.4"
+    },
+    "autoload": {
+        "psr-4": {
+            "SON\\": "src/"
+        }
+    }
+}
