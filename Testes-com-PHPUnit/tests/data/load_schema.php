@@ -2,7 +2,7 @@
 
 function getPDO()
 {
-    $db = new PDO('sqlite::memory:');
+    $db = new \PDO('sqlite::memory:');
     $fh = fopen(__DIR__ . '/schema.sql', 'r');
     while ($line = fread($fh, 4096)) {
         $db->exec($line);

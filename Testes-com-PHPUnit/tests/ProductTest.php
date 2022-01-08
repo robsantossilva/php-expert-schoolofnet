@@ -8,7 +8,9 @@ class ProductTest extends PHPUnit\Framework\TestCase
     protected function setUp()
     {
         $pdo = $this->getMockBuilder(\PDO::class)
-            ->disableOriginalConstructor()->getMock();
+            ->disableOriginalConstructor()
+            ->getMock();
+
         $this->product = new \SON\Model\Product($pdo);
     }
 
