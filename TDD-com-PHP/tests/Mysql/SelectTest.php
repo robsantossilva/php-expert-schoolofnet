@@ -12,4 +12,14 @@ class SelectTest extends \PHPUnit\Framework\TestCase
         $expected = 'SELECT * FROM pages;';
         $this->assertEquals($expected, $actual);
     }
+
+    public function testSelectInputtingFields()
+    {
+        $select = new Select;
+        $select->table('pages');
+        $select->fields(['name', 'email']);
+        $actual = $select->getSql();
+        $expected = 'SELECT name, email FROM pages;';
+        $this->assertEquals($expected, $actual);
+    }
 }
