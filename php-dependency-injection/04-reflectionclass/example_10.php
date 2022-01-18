@@ -1,12 +1,12 @@
 <?php
 
-require __DIR__.'/../vendor/autoload.php';
+require __DIR__ . '/../vendor/autoload.php';
 
 class TestAdapter
 {
     public function __construct()
     {
-        var_dump(TestAdapter::class.'::__construct()');
+        var_dump(TestAdapter::class . '::__construct()');
     }
 
     public function runTest($message)
@@ -23,11 +23,11 @@ class Tester
     }
 }
 
-(new SON\Di\Resolver)->resolveClass('Tester');
+// (new SON\Di\Resolver)->resolveClass('Tester', ['message' => 'Teste do Robson']);
 
-$func = function(Tester $tester, TestAdapter $test_adapter, $msg = 'Teste de closure') {
+$func = function (Tester $tester, TestAdapter $test_adapter, $msg = 'Teste de closure') {
     var_dump($test_adapter->runTest($msg));
 };
 
 
-(new SON\Di\Resolver)->resolveFunction($func, ['msg'=>'Teste de closure com injeção externa']);
+(new SON\Di\Resolver)->resolveFunction($func, ['msg' => 'Teste de closure com injeção externa']);

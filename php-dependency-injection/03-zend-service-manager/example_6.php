@@ -1,6 +1,6 @@
 <?php
 
-require __DIR__.'/../vendor/autoload.php';
+require __DIR__ . '/../vendor/autoload.php';
 
 use Interop\Container\ContainerInterface;
 use Zend\ServiceManager\ServiceManager;
@@ -9,7 +9,7 @@ class TestAdapter
 {
     public function __construct()
     {
-        var_dump(TestAdapter::class.'::__construct()');
+        var_dump(TestAdapter::class . '::__construct()');
     }
 
     public function runTest($message)
@@ -32,11 +32,15 @@ $serviceManager = new ServiceManager([
             return new TestAdapter;
         },
         'tester' => function (ContainerInterface $c) {
-              return new Tester($c->get('ta'));
+            return new Tester($c->get('ta'));
         },
     ]
 ]);
 
-$tester = $serviceManager->get('tester');
 
-var_dump($tester);
+//get tras a mesma instancia gerada na primeira chamada
+$tester1 = $serviceManager->get('tester');
+$tester2 = $serviceManager->get('tester');
+
+var_dump($tester1 === $tester2);
+var_dump($tester1, $tester2);
