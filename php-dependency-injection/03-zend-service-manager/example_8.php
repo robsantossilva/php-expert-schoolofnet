@@ -1,14 +1,14 @@
 <?php
 
-require __DIR__.'/../vendor/autoload.php';
+require __DIR__ . '/../vendor/autoload.php';
 
 use Zend\ServiceManager\ServiceManager;
 
 $serviceManager = new ServiceManager([
-    'services' => [],
-    'factories' => [],
-    'abstract_factories' => [],
-    'delegators' => [],
+    'services' => [], //resultados de logicas complexas
+    'factories' => [], //geração de classes
+    'abstract_factories' => [], //Tras classes com base em regras
+    'delegators' => [], //
     'shared' => [],
     'shared_by_default' => [],
 ]);

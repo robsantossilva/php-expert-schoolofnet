@@ -1,6 +1,6 @@
 <?php
 
-require __DIR__.'/../vendor/autoload.php';
+require __DIR__ . '/../vendor/autoload.php';
 
 use Interop\Container\ContainerInterface;
 use Zend\ServiceManager\ServiceManager;
@@ -10,7 +10,7 @@ class TestAdapter
 {
     public function __construct()
     {
-        var_dump(TestAdapter::class.'::__construct()');
+        var_dump(TestAdapter::class . '::__construct()');
     }
 
     public function runTest($message)
@@ -29,9 +29,9 @@ class Tester
 
 class TesterFactory implements FactoryInterface
 {
-    public function __invoke(ContainerInterface $container, $requestedName, array $options = null)
+    public function __invoke(ContainerInterface $c, $requestedName, array $options = null)
     {
-        return new Tester($container->get('ta'));
+        return new Tester($c->get('ta'));
     }
 }
 
@@ -42,14 +42,15 @@ $serviceManager = new ServiceManager([
         },
         'tester' => TesterFactory::class,
     ],
-  /*  'shared' => [
+    /*  'shared' => [
         'tester' => false
     ]*/
     'shared_by_default' => false
 ]);
 
-$tester1 = $serviceManager->get('tester');
-$tester2 = $serviceManager->get('tester');
+//Build gera nova instancia
+$tester1 = $serviceManager->build('tester');
+$tester2 = $serviceManager->build('tester');
 
 var_dump($tester1 === $tester2);
 var_dump($tester1, $tester2);
