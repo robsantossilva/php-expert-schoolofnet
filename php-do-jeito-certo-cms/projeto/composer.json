@@ -1,0 +1,30 @@
+{
+    "name": "robsantossilva/mfw",
+    "authors": [
+        {
+            "name": "Robson Silva",
+            "email": "robsantossilva@gmail.com"
+        }
+    ],
+    "repositories": [
+        {
+            "type": "path",
+            "url": "../php-do-jeito-certo-orm"
+        }
+    ],
+    "require": {
+        "illuminate/support": "^5.5",
+        "robsantossilva/son-orm": "@dev",
+        "pimple/pimple": "^3.2",
+        "twig/twig": "^2.14"
+    },
+    "require-dev": {
+        "squizlabs/php_codesniffer": "^3.1"
+    },
+    "autoload": {
+        "psr-4": {
+            "Robsantossilva\\": "src",
+            "App\\": "app"
+        }
+    }
+}
