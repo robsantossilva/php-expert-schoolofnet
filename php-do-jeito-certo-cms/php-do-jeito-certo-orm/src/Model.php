@@ -15,7 +15,7 @@ abstract class Model
         return $this;
     }
 
-    protected function getDriver()
+    public function getDriver()
     {
         return $this->driver;
     }
