@@ -1,10 +1,10 @@
 <?php
 
 use Robsantossilva\ORM\Drivers\MysqlPdo;
-use App\Model\Users;
+use App\Models\Users;
+use App\Models\Pages;
 use Twig\Loader\FilesystemLoader;
 use Twig\Environment;
-use Twig\Extension\DebugExtension;
 
 $container['view'] = function ($c) {
     $loader = new FilesystemLoader(__DIR__ . '/templates');
@@ -24,4 +24,11 @@ $container['model_user'] = $container->factory(function ($c) {
     $users = new Users;
     $users->setDriver($driver);
     return $users;
+});
+
+$container['model_page'] = $container->factory(function ($c) {
+    $driver = new MysqlPdo($c['pdo']);
+    $pages = new Pages;
+    $pages->setDriver($driver);
+    return $pages;
 });

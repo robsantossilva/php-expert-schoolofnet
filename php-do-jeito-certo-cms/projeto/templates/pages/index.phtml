@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <table class="">
+        <thead>
+            <tr>
+                <th>id</th>
+                <th>title</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for page in pages %}
+            <tr>
+                <td>{{ page.id }}</td>
+                <td>{{ page.title }}</td>
+                <td>
+                    <a href="/admin/pages/{{page.id}}">ver</a>
+                    <a href="/admin/pages/edit/{{page.id}}">editar</a>
+                    <form action="/admin/pages/delete/{{ page.id }}" method="post" style="display:inline-block">
+                        <input type="submit" value="remover">
+                    </form>
+                </td>
+            </tr>
+            {% else %}
+            <tr>
+                <td colspan="3">Nenhum registro</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="/admin/pages/new">Nova página</a>
+</body>
+
+</html>

@@ -4,6 +4,6 @@ namespace App\Models;
 
 use Robsantossilva\ORM\Model;
 
-class Users extends Model
+class Pages extends Model
 {
 }
