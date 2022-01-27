@@ -49,6 +49,21 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Throwable $exception)
     {
+        $arrayException = [
+            HttpException::class,
+            ModelNotFoundException::class,
+        ];
+
+        if (in_array(get_class($exception), $arrayException)) {
+            $response = parent::render($request, $exception);
+            return response()->json([
+                'status_code' => $response->getStatusCode(),
+                'error_code' => 5557,
+                'message' => $exception->getMessage(),
+                'abount_error' => 'album link'
+            ], $response->getStatusCode());
+        }
+
         return parent::render($request, $exception);
     }
 }
