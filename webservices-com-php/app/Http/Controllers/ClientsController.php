@@ -3,40 +3,64 @@
 namespace App\Http\Controllers;
 
 use App\Models\Client;
-use Illuminate\Http\JsonResponse;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
 
 class ClientsController extends Controller
 {
     public function index()
     {
-        return Client::all();
+        return son_response(Client::all());
     }
 
     public function show($id)
     {
-        return Client::find($id);
+        $client = Client::find($id);
+        if (!$client) {
+            throw new ModelNotFoundException("Client not found");
+        }
+        return son_response($client);
     }
 
-    public function store(Request $request): JsonResponse
+    public function store(Request $request)
     {
+
+        $this->validate($request, [
+            "name" => "required",
+            "email" => "required",
+            "phone" => "required",
+        ]);
+
         $client = Client::create($request->all());
 
-        return response()->json($client, 201);
+        return son_response($client, 201);
     }
 
-    public function update(Request $request, $id): JsonResponse
+    public function update(Request $request, $id)
     {
         $client = Client::find($id);
+        if (!$client) {
+            throw new ModelNotFoundException("Client not found");
+        }
+
+        $this->validate($request, [
+            "name" => "required",
+            "email" => "required",
+            "phone" => "required",
+        ]);
+
         $client->fill($request->all());
         $client->save();
-        return response()->json($client, 200);
+        return son_response($client, 200);
     }
 
-    public function destroy($id): JsonResponse
+    public function destroy($id)
     {
         $client = Client::find($id);
+        if (!$client) {
+            throw new ModelNotFoundException("Client not found");
+        }
         $client->delete();
-        return response()->json($client, 204);
+        return son_response($client, 204);
     }
 }
