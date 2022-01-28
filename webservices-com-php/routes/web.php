@@ -18,12 +18,12 @@ $router->get('/', function () use ($router) {
 });
 
 $router->group([
-    'prefix' => 'api/clients',
+    'prefix' => 'api/clients/{clientId}/addresses',
     'namespace' => '\App\Http\Controllers'
 ], function () use ($router) {
-    $router->get('/', 'ClientsController@index');
-    $router->get('/{id}', 'ClientsController@show');
-    $router->post('', 'ClientsController@store');
-    $router->put('/{id}', 'ClientsController@update');
-    $router->delete('/{id}', 'ClientsController@destroy');
+    $router->get('/', 'AddressesController@index');
+    $router->get('/{id}', 'AddressesController@show');
+    $router->post('', 'AddressesController@store');
+    $router->put('/{id}', 'AddressesController@update');
+    $router->delete('/{id}', 'AddressesController@destroy');
 });
