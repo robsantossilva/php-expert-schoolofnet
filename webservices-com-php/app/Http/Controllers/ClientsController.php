@@ -10,7 +10,7 @@ class ClientsController extends Controller
 {
     public function index()
     {
-        return son_response(Client::all());
+        return son_response()->make(Client::all());
     }
 
     public function show($id)
